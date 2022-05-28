@@ -32,10 +32,10 @@ useEffect(()=>{
 // console.log('del',caches.delete('data'));
 // caches.match('data')
 // console.log('match',caches.match('data'));
-caches.open('data').then((c)=>c.addAll([
-  Logo,token
-]))
-console.log('op',caches.open('v1'));
+// caches.open('data').then((c)=>c.addAll([
+//   Logo,token
+// ]))
+// console.log('op',caches.open('v1'));
 // caches.delete('v1')
 // caches.delete('data')
 // caches.delete(data)

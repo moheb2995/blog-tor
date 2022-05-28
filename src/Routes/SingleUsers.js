@@ -7,8 +7,10 @@ const SingleUsers = () => {
 
   const [data,setdata] = useState({})
   const [blogs,setblogs] = useState([])
+
+  const [loading, setLoading] = useState(true)
+
   const link = 'http://localhost:4000/'
-console.log(data);
 let {_id} =useParams();
 
 useEffect(()=>{
@@ -20,16 +22,35 @@ useEffect(()=>{
     headers: { 
       'Content-Type': 'application/json',
     },
-    // body: JSON.stringify({ _id : data._id})
-    body: JSON.stringify({ _id : 'btu-1651913283993755409' })
+    body: JSON.stringify({ _id })
   })
-  .then(res=>{console.log(res); return res.json()}).then(data=>setblogs(data))
+  .then(res=>res.json()).then(data=>{
+    setblogs(data)
+    setLoading(false)
+  })
 },[])
 
 if(!data)return <div className="shadow-xl p-4 text-center m-10">
   <h1 className="text-5xl font-bold m-4">Loding</h1>
   <p className="text-xl">{'<<please wait>>'}</p>
 </div>
+
+function blogsByUser() {
+  if(!blogs.length) return 'no blog'
+
+  if(blogs.length) return blogs.map(i=>
+  <div className=''>
+    <h2 className="">{i.title} </h2>
+    <img src={i.imgurl} alt="img" />
+    <Rating
+      name="simple-controlled"
+      value={i.averageScore}
+      readOnly
+    />
+  </div>)
+}
+
+if (loading) return <h1> loading </h1>
 
 return (
 <div className='bg-orange-50 min-h-[94vh] p-10'>
@@ -55,21 +76,7 @@ return (
 
   <div className="bg-orange-300 w-[86vw] p-3 m-auto rounded-sm">
     <h1 className="font-bold  ">blogs : </h1>
-    {
-      !blogs.length ? 'no blog'
-      :
-      blogs.map(i=>
-      <div className=''>
-        <h2 className="">{i.title} </h2>
-        <h2 className="">{i.content} </h2>
-        <img src={i.imgurl} alt="img" />
-        <Rating
-          name="simple-controlled"
-          value={i.averageScore}
-          readOnly 
-        />
-      </div>)
-    }
+    {blogsByUser()}
   </div>
 
 </div>
