@@ -63,3 +63,4 @@ self.addEventListener('activate', e => {
     })
   )
 })
+
