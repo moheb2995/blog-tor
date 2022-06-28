@@ -5,12 +5,12 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [username,setusername] = useState('')
   const [password,setpassword] = useState('')
-  // const [,set] = useState()
 
   const cookies = new Cookies()
   const navigate = useNavigate();
 
   const login = async ()=>{
+
     fetch('http://localhost:4000/user/login', {
       method: 'POST',
       headers: { 
@@ -20,9 +20,8 @@ const Login = () => {
         username : username, 
         password,
       })
-    }).then(data=>data.json())      
+    }).then(data=>data.json())
     .then(({token})=>{cookies.set('ut' , token); if(token){navigate('/')}else{alert('نام کاربری یا رمز عبور نا معتبر است !!!')}})
-    // navigate ?
   }
 
 return (

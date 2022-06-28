@@ -32,7 +32,7 @@ const userList = data.map(i=>
     </div>
   </Link>)
 
-if(!data)return <div className="shadow-xl p-4 text-center m-10">
+if(!data.length)return <div className="shadow-xl p-4 text-center m-10">
   <h1 className="text-5xl font-bold m-4">Loding</h1>
   <p className="text-xl">{'<<please wait>>'}</p>
 </div> 

@@ -15,32 +15,18 @@ function exit(){
 }
 
 useEffect(()=>{
-  fetch('http://localhost:4000/user/me', {
-    method: 'POST', // or 'PUT'
-    headers: {
-      'Content-Type': 'application/json',
-      'auth': `ut ${token}`
-    },
-    body: JSON.stringify({})
-
-  }).then(res=>{ return res.json()}).then(data =>setdata(data))
+  if(token){
+    fetch('http://localhost:4000/user/me', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+        'auth': `ut ${token}`
+      },
+      body: JSON.stringify({})
+      
+    }).then(res=>{ return res.json()}).then(data =>setdata(data))
+  }
 },[])
-// console.log('data:',data);
-// caches.keys('data','http://localhost:4000/user/me')
-// caches.has('data')
-// console.log(caches.has('has','data'));
-// console.log('del',caches.delete('data'));
-// caches.match('data')
-// console.log('match',caches.match('data'));
-// caches.open('data').then((c)=>c.addAll([
-//   Logo,token
-// ]))
-// console.log('op',caches.open('v1'));
-// caches.delete('v1')
-// caches.delete('data')
-// caches.delete(data)
-// caches.delete(undefined)
-
 
 return (
 <div>
